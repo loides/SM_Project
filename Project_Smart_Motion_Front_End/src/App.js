@@ -129,9 +129,9 @@ const App = () => {
           <Route path="/user" element={<BoardUser />} />
           <Route path="/mod" element={<BoardModerator />} />
           <Route path="/admin" element={<BoardAdmin />} />
-          <Route path="/sensors" element={<SensorList/>} />
-          <Route path="/add" element={<AddSensor />} />
-          <Route path="/sensors/:uid" element={<Sensor/>} />
+          <Route path="/sensors" element={ currentUser ? (<SensorList/>) : (<Navigate to="/login" state={{ from: '/sensors'}} />) } />
+          <Route path="/add" element={ currentUser ? (<AddSensor/>) : (<Navigate to="/login" state={{ from: '/add'}} />) } />
+          <Route path="/sensors/:uid" element={ currentUser ? (<Sensor/>) : (<Navigate to="/login" state={{ from: '/sensors/:uid'}} />) } />
         </Routes>
       </div>
 
