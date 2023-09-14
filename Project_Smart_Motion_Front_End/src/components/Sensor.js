@@ -131,6 +131,7 @@ const Sensor = props => {
       </div>
     )}
   </div>
+  
   );
 };
 

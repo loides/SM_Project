@@ -4,7 +4,7 @@ import SensorDataService from "../services/SensorService";
 const AddSensor = () => {
   const initialSensorState = {
     uid: "",
-    sensorValue: null,
+    sensorValue: "",
     timestamp: "",
     sensorType: ""
   };

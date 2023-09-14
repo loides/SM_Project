@@ -30,14 +30,4 @@ class SensorDataService {
   }
 }
 
-/* const TutorialService = {
-  getAll,
-  get,
-  create,
-  update,
-  delete,
-  deleteAll,
-  findByTitle
-}; */
-
 export default new SensorDataService();
