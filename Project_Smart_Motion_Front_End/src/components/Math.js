@@ -1,10 +1,4 @@
 
-function StandardDeviation (array) {
-    const n = array.length
-    const mean = array.reduce((a, b) => a + b) / n
-    return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
-  }
-
 function calculateSensorStats(sensorData) {
     if (sensorData.length === 0) {
       return {
@@ -22,7 +16,7 @@ function calculateSensorStats(sensorData) {
     const sum = sensorData.reduce((acc, currentValue) => acc + currentValue, 0);
     const mean = sum / sensorData.length;
 
-    const sd = StandardDeviation(...sensorData);
+    const sd = Math.sqrt(sensorData.map(x => Math.pow(x - mean, 2)).reduce((acc, currentValue) => acc + currentValue) / sensorData.length);
   
     return {
       max,
