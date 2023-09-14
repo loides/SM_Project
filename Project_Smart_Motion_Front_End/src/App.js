@@ -10,7 +10,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
-import BoardUser from "./components/BoardUser";
+import Dashboard from "./components/Dashboard";
 import BoardModerator from "./components/BoardModerator";
 import BoardAdmin from "./components/BoardAdmin";
 import Sensor from "./components/Sensor";
@@ -71,8 +71,8 @@ const App = () => {
           {currentUser && (
             <>
             <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
-                User
+              <Link to={"/dashboard"} className="nav-link">
+                Dashboard
               </Link>
             </li>
             <li className="nav-item">
@@ -123,12 +123,12 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/user" element={<BoardUser />} />
-          <Route path="/mod" element={<BoardModerator />} />
-          <Route path="/admin" element={<BoardAdmin />} />
+          <Route path="/login" element={ currentUser ? (<Navigate to="/dashboard" state={{ from: '/login'}}/>) : (<Login/>) } />
+          <Route path="/register" element={ currentUser ? (<Navigate to="/dashboard" state={{ from: '/register'}}/>) : (<Register/>) } />
+          <Route path="/profile" element={ currentUser ? (<Profile/>) : (<Navigate to="/login" state={{ from: '/profile'}} />) } />
+          <Route path="/dashboard" element={ currentUser ? (<Dashboard/>) : (<Navigate to="/login" state={{ from: '/dashboard'}} />) } />
+          <Route path="/mod" element={ currentUser ? (<BoardModerator/>) : (<Navigate to="/login" state={{ from: '/mod'}} />) } />
+          <Route path="/admin" element={ currentUser ? (<BoardAdmin/>) : (<Navigate to="/login" state={{ from: '/admin'}} />) } />
           <Route path="/sensors" element={ currentUser ? (<SensorList/>) : (<Navigate to="/login" state={{ from: '/sensors'}} />) } />
           <Route path="/add" element={ currentUser ? (<AddSensor/>) : (<Navigate to="/login" state={{ from: '/add'}} />) } />
           <Route path="/sensors/:uid" element={ currentUser ? (<Sensor/>) : (<Navigate to="/login" state={{ from: '/sensors/:uid'}} />) } />

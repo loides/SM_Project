@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import UserService from "../services/UserService";
 
-const BoardUser = () => {
+const Dashboard = () => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
@@ -32,4 +32,4 @@ const BoardUser = () => {
   );
 };
 
-export default BoardUser;
+export default Dashboard;

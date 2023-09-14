@@ -17,7 +17,7 @@ const required = (value) => {
 };
 
 const Login = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const form = useRef();
   const checkBtn = useRef();
@@ -36,6 +36,7 @@ const Login = () => {
     const password = e.target.value;
     setPassword(password);
   };
+
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -67,6 +68,8 @@ const Login = () => {
       setLoading(false);
     }
   };
+  
+  
 
   return (
     <div className="col-md-12">
