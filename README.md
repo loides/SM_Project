@@ -1,10 +1,15 @@
 # SM_Project
  Smart Motion Project
 
- As of now, Docker isn't implemented yet, so, to run this, you need to:
- - 1: Start MongoDB with the standart port (27017);
- - 2: Start the backend with Spring Boot (port 8080, already configured);
- - 3: Start the frontend with React (port 8081, already configured).
+Personal project with the aim of learning how to build a full-stack CRUD application.
+Backend in Java with Spring Boot and Maven, MongoDB for the database and Frontend with React.
+Docker is used to containerize and simplify the process.
 
- In the future, these 3 components will be dockerized and composed, 
-    and you will be able to run this in a whole container.
+To run, simply type the command 'docker-compose up' inside the default SM_Project folder.
+
+Future Development:
+- 
+- Implement small CRUD safeguards
+- Improve the Homepage design
+- Add some more CSS to a few pages
+- ...

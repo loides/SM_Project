@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+
+  mongodb:
+    image: mongo:7.0
+    container_name: smart-motion-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: test
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - smart-motion-network
+    #healthcheck:
+    #  test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+    #  interval: 30s
+    #  timeout: 10s
+    #  retries: 3
+    #  start_period: 30s
+
+  backend:
+    build:
+      context: ./Project_Smart_Motion/project_test
+      dockerfile: Dockerfile
+    container_name: smart-motion-backend
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/test
+      SPRING_PROFILES_ACTIVE: docker
+    #depends_on:
+    #  mongodb:
+    #    condition: service_healthy
+    networks:
+      - smart-motion-network
+    #healthcheck:
+    #  test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+    #  interval: 30s
+    #  timeout: 10s
+    #  retries: 3
+    #  start_period: 60s
+
+  frontend:
+    build:
+      context: ./Project_Smart_Motion_Front_End
+      dockerfile: Dockerfile
+    container_name: smart-motion-frontend
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      REACT_APP_API_URL: http://localhost:8080/api
+      PORT: 8081
+    #depends_on:
+    #  backend:
+    #    condition: service_healthy
+    networks:
+      - smart-motion-network
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  smart-motion-network:
+    driver: bridge
