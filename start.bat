@@ -1,8 +1,12 @@
 @echo off
 echo Starting Smart Motion...
 
-REM Start and wait for all services to be healthy
 docker-compose up --build --wait
+if errorlevel 1 (
+    echo Docker failed to start.
+    pause
+    exit /b 1
+)
 
 echo Services are almost ready!
 timeout /t 7 /nobreak >nul

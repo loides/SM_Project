@@ -90,15 +90,17 @@ const AddSensor = () => {
 
           <div className="form-group">
             <label htmlFor="sensorType">Sensor Type</label>
-            <input
-              type="text"
+            <select
               className="form-control"
               id="sensorType"
-              required
-              value={sensor.sensorType}
               onChange={handleInputChange}
               name="sensorType"
-            />
+              required
+              >
+              <option value="">-- Select Sensor Type --</option>
+              <option value="Temperature">Temperature</option>
+              <option value="Luminosity">Luminosity</option>
+            </select>
           </div>
 
           <button onClick={saveSensor} className="btn btn-success">
